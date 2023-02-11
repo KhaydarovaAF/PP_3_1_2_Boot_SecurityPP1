@@ -30,11 +30,10 @@ public class User implements UserDetails {
     private String password;
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "users_roles"
-            , joinColumns = @JoinColumn(name = "user_id")
-            , inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Roles> roles;
 
     public User() {

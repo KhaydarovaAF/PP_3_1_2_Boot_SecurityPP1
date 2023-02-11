@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kata.spring.boot_security.demo.model.Roles;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repositories.RoleRepository;
 import ru.kata.spring.boot_security.demo.repositories.UserRepository;
@@ -40,10 +39,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return user.orElse(null);
     }
 
-    @Override
-    public List<Roles> getListRoles() {
-        return roleRepository.findAll();
-    }
 
     @Override
     @Transactional
@@ -52,11 +47,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userRepository.save(user);
     }
 
-    @Override
-    @Transactional
-    public void addRoles(Roles role) {
-        roleRepository.save(role);
-    }
 
     @Override
     @Transactional
